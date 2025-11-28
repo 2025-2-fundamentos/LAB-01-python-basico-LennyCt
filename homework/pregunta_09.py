@@ -24,3 +24,16 @@ def pregunta_09():
      'jjj': 18}}
 
     """
+    results = {}
+    with open("files/input/data.csv", "r") as file:
+        for line in file:
+            columns = line.strip().split("\t")
+            dict_entries = columns[4].split(",")
+            for entry in dict_entries:
+                key, _ = entry.split(":")
+                if key in results:
+                    results[key] += 1
+                else:
+                    results[key] = 1
+
+    return results

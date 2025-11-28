@@ -16,3 +16,16 @@ def pregunta_11():
 
 
     """
+    results = {}
+    with open("files/input/data.csv", "r") as file:
+        for line in file:
+            columns = line.strip().split("\t")
+            value = int(columns[1])
+            letters = columns[3].split(",")
+            for letter in letters:
+                if letter in results:
+                    results[letter] += value
+                else:
+                    results[letter] = value
+
+    return dict(sorted(results.items()))

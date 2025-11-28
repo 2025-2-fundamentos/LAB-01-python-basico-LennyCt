@@ -15,3 +15,17 @@ def pregunta_03():
     [('A', 53), ('B', 36), ('C', 27), ('D', 31), ('E', 67)]
 
     """
+    results = {}
+    with open("files/input/data.csv", "r") as file:
+        for line in file:
+            columns = line.strip().split("\t")
+            char = columns[0]
+            value = int(columns[1])
+            if char in results:
+                results[char] += value
+            else:
+                results[char] = value
+
+    results_list = [(char, sum) for char, sum in results.items()]
+    results_list.sort(key=lambda x: x[0])
+    return results_list
